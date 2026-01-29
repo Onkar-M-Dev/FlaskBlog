@@ -18,6 +18,19 @@ def create_app(config_class=Config):
     app.app_context().push()
     app.config.from_object(Config)
 
+    #app.config['SECRET_KEY'] = 'dev-secret-key'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+    #app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    #app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    #app.config['MAIL_PORT'] = 587
+    #app.config['MAIL_USE_TLS'] = True
+    #app.config['MAIL_USE_SSL'] = False
+    #app.config['MAIL_USERNAME'] = 'dontreply.flaskblog@gmail.com'
+    #app.config['MAIL_PASSWORD'] = 'your_app_password_here'
+    #app.config['MAIL_DEFAULT_SENDER'] = 'yourgmail@gmail.com'
+
+
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
