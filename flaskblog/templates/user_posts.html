@@ -1,28 +1,82 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }}) </h1>
+
+<div class="feed-container">
+
+    <!-- 🔹 Header -->
+    <div class="mb-4">
+        <h3 class="fw-bold">Posts by {{ user.username }}</h3>
+        <p class="text-muted small">{{ posts.total }} posts</p>
+    </div>
+
+    <!-- 🔹 Posts -->
     {% for post in posts.items %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file)}}"
-            <div class="media-body">
-                <div class="article-metadata">
-                <a class="mr-2" href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
-                <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+    <div class="card post-card mb-4">
+
+        <!-- Header -->
+        <div class="d-flex align-items-center mb-3">
+
+            <img src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}"
+                 class="post-avatar me-3">
+
+            <div>
+                <a class="fw-semibold text-decoration-none post-username"
+                   href="{{ url_for('users.user_posts', username=post.author.username) }}">
+                   {{ post.author.username }}
+                </a>
+                <div class="text-muted small">
+                    {{ post.date_posted.strftime('%b %d, %Y') }}
                 </div>
-                <h2><a class="article-title" href="{{ url_for('posts.post', post_id = post.id) }}">{{ post.title }}</a></h2>
-                <p class="article-content">{{ post.content }}</p>
             </div>
-        </article>
+
+        </div>
+
+        <!-- Title -->
+        <h5 class="post-title">
+            <a class="text-decoration-none"
+               href="{{ url_for('posts.post', post_id=post.id) }}">
+               {{ post.title }}
+            </a>
+        </h5>
+
+        <!-- Content -->
+        <p class="post-content">
+            {{ post.content[:150] }}{% if post.content|length > 150 %}...{% endif %}
+        </p>
+
+        <!-- Footer -->
+        <div class="mt-2">
+            <a href="{{ url_for('posts.post', post_id=post.id) }}"
+               class="read-more">
+               Read more →
+            </a>
+        </div>
+
+    </div>
     {% endfor %}
-    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-      {% if page_num %}
+
+</div>
+
+
+<!-- 🔹 Pagination -->
+<div class="d-flex justify-content-center mt-4">
+{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+    {% if page_num %}
         {% if posts.page == page_num %}
-           <a class="btn btn-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-primary mx-1"
+               href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">
+               {{ page_num }}
+            </a>
         {% else %}
-           <a class="btn btn-outline-info mb-4" href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            <a class="btn btn-outline-primary mx-1"
+               href="{{ url_for('users.user_posts', username=user.username, page=page_num) }}">
+               {{ page_num }}
+            </a>
         {% endif %}
-      {% else %}
-        ...
-      {% endif %}
-    {% endfor %}
+    {% else %}
+        <span class="mx-2">...</span>
+    {% endif %}
+{% endfor %}
+</div>
+
 {% endblock content %}

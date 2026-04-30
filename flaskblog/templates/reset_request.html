@@ -1,27 +1,59 @@
 {% extends 'layout.html' %}
 {% block content %}
-        <div class = "content-section">
+
+<div class="row justify-content-center">
+    <div class="col-md-5 col-lg-4">
+
+        <div class="card p-4 auth-card">
+
+            <!-- Header -->
+            <div class="text-center mb-4">
+                <h3 class="fw-bold">Reset Password 🔐</h3>
+                <p class="text-muted small">
+                    Enter your email and we’ll send you a reset link
+                </p>
+            </div>
+
+            <!-- Form -->
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Reset Password</legend>
-                    <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
-                        {% if form.email.errors %}
-                            {{ form.email(class="form-control form-control-lg is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in form.email.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        {% else %}
-                            {{ form.email(class="form-control form-control-lg") }}
-                        {% endif %}
-                    </div>
-                </fieldset>
-                <div class="form-group">
-                    {{ form.submit(class="btn btn-outline-info") }}
+
+                <!-- Email -->
+                <div class="mb-3">
+                    {{ form.email.label(class="form-label fw-semibold") }}
+
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control is-invalid", placeholder="Enter your email") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control", placeholder="Enter your email") }}
+                    {% endif %}
                 </div>
+
+                <!-- Submit -->
+                <div class="d-grid mb-2">
+                    {{ form.submit(class="btn btn-primary btn-lg") }}
+                </div>
+
             </form>
+
+            <!-- Back to login -->
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Remember your password?
+                    <a href="{{ url_for('users.login') }}" class="fw-semibold">
+                        Login
+                    </a>
+                </small>
+            </div>
+
         </div>
+
+    </div>
+</div>
+
 {% endblock content %}

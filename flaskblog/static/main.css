@@ -1,80 +1,248 @@
+/* =========================
+   🌐 GLOBAL
+========================= */
 body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    padding-top: 80px;
+    color: #1f2937;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+a {
+    text-decoration: none;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+/* =========================
+   🔷 NAVBAR
+========================= */
+.custom-navbar {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+.navbar-brand {
+    font-weight: 600;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+/* =========================
+   🧱 CARDS
+========================= */
+.card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+.card:hover {
+    transform: translateY(-4px);
 }
 
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+/* =========================
+   🔘 BUTTONS (FIX INCLUDED)
+========================= */
+.btn {
+    width: 100%;
+    white-space: normal;   /* 🔥 FIX: prevents overflow */
+    text-align: center;
 }
 
-.article-title {
-  color: #444444;
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    border: none;
 }
 
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8, #4338ca);
 }
 
-.article-content {
-  white-space: pre-line;
+.btn-lg {
+    font-size: 15px;
+    padding: 10px;
 }
 
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+/* =========================
+   ✨ INPUTS
+========================= */
+.form-control {
+    border-radius: 10px;
 }
 
-.article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+.form-control:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+/* =========================
+   🔐 AUTH
+========================= */
+.auth-card {
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.4s ease;
 }
 
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
+/* =========================
+   📝 EDITOR
+========================= */
+.editor-container {
+    max-width: 750px;
+    margin: auto;
+}
+
+.editor-card {
+    border-radius: 18px;
+}
+
+.post-textarea {
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* =========================
+   📰 FEED
+========================= */
+.feed-container {
+    max-width: 700px;
+    margin: auto;
+}
+
+.post-card {
+    padding: 18px 20px;
+}
+
+.post-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2563eb;
+}
+
+.post-username {
+    color: #1f2937;
+}
+
+.post-username:hover {
+    color: #2563eb;
+}
+
+.post-title a {
+    color: #111827;
+    font-weight: 600;
+}
+
+.post-title a:hover {
+    color: #2563eb;
+}
+
+.post-content {
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.read-more {
+    font-size: 14px;
+    color: #2563eb;
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   📄 POST DETAIL
+========================= */
+.post-container {
+    max-width: 750px;
+    margin: auto;
+}
+
+.post-detail-card {
+    border-radius: 18px;
+}
+
+.post-detail-title {
+    font-weight: 700;
+    color: #111827;
+}
+
+.post-detail-content {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #374151;
+}
+
+/* =========================
+   👤 PROFILE IMAGE (FIXED)
+========================= */
 .account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+    width: 130px !important;
+    height: 130px !important;
+    max-width: 130px !important;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #2563eb;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    display: block;
+    margin: 0 auto;
+    transition: 0.3s ease;
 }
 
-.account-heading {
-  font-size: 2.5rem;
+.account-img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   🌙 DARK MODE
+========================= */
+body.dark-mode {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #e2e8f0;
+}
+
+body.dark-mode .card {
+    background-color: #1e293b;
+    color: #e2e8f0;
+}
+
+body.dark-mode .custom-navbar {
+    background: linear-gradient(135deg, #020617, #0f172a);
+}
+
+body.dark-mode .form-control {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    border-color: #334155;
+}
+
+body.dark-mode .form-control:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+body.dark-mode .post-title a {
+    color: #e2e8f0;
+}
+
+body.dark-mode .post-content {
+    color: #cbd5f5;
+}
+
+body.dark-mode .post-detail-title {
+    color: #e2e8f0;
+}
+
+body.dark-mode .post-detail-content {
+    color: #cbd5f5;
 }
