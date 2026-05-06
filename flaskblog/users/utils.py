@@ -21,13 +21,21 @@ def save_picture(form_picture):
 
 def send_reset_email(user):
     token = user.get_reset_token()
-    msg = Message('Password Reset Request', sender='noreply@demo.com', recipients=[user.email])
-    msg.body = f''' To reset your password, visit the following link: 
-               {url_for('users.reset_token', token=token, _external=True)}
-               If you did not make this request, please simply Ignore this mail !
-               '''
+
+    msg = Message(
+        'Password Reset Request',
+        sender=current_app.config['MAIL_USERNAME'],
+        recipients=[user.email]
+    )
+
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('users.reset_token', token=token, _external=True)}
+
+If you did not make this request then simply ignore this email.
+'''
+
     try:
         mail.send(msg)
         print("EMAIL SENT SUCCESSFULLY")
     except Exception as e:
-        print("EMAIL ERROR:", str(e))
+        print("EMAIL ERROR:", e)
