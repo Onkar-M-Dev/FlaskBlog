@@ -26,4 +26,8 @@ def send_reset_email(user):
                {url_for('users.reset_token', token=token, _external=True)}
                If you did not make this request, please simply Ignore this mail !
                '''
-    mail.send(msg)
+    try:
+        mail.send(msg)
+        print("EMAIL SENT SUCCESSFULLY")
+    except Exception as e:
+        print("EMAIL ERROR:", str(e))
